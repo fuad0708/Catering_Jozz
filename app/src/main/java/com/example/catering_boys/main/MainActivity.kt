@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // BARU: Klik tombol "Bantul, DIY" untuk membuka Google Maps
+
         binding.btnLocationHome.setOnClickListener {
             val intent = Intent(this@MainActivity, AlamatActivity::class.java)
             startActivity(intent)

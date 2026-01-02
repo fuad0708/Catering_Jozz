@@ -18,46 +18,38 @@ class AccountActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Menggunakan View Binding untuk akses komponen UI
         binding = ActivityAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Mengambil data user dari SharedPreferences
         val sharedPref = getSharedPreferences("USER_DATA", Context.MODE_PRIVATE)
         val username = sharedPref.getString("USERNAME", "User Catering")
         val email = sharedPref.getString("EMAIL", "email@cateringboys.com")
 
-        // Menampilkan data user ke TextView
         binding.tvUsername.text = username
         binding.tvEmail.text = email
 
-        // Navigasi ke Riwayat Pesanan
         binding.btnHistory.setOnClickListener {
             val intent = Intent(this, HistoryOrderActivity::class.java)
             startActivity(intent)
         }
 
-        // PERBAIKAN: Sekarang membuka halaman Google Maps (AlamatActivity)
         binding.btnAddress.setOnClickListener {
             val intent = Intent(this, AlamatActivity::class.java)
             startActivity(intent)
         }
 
-        // Navigasi ke Dashboard Penjual
         binding.btnSwitchMode.setOnClickListener {
             val intent = Intent(this, SellerDashboardActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        // Logika Logout
         binding.btnLogout.setOnClickListener {
-            // Menghapus sesi login
+
             val editor = sharedPref.edit()
             editor.clear()
             editor.apply()
 
-            // Kembali ke halaman Login dan hapus tumpukan activity
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
