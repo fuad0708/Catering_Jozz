@@ -7,7 +7,7 @@ import java.io.Serializable
 
 @Entity(tableName = "tbl_catering")
 data class DatabaseModel(
-    // 1. Ubah PrimaryKey menjadi String dan hapus autoGenerate
+
     @PrimaryKey
     var uid: String = "",
 

@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setInputData() {
-        // Pindah ke halaman Daftar
+
         binding.btnRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
@@ -46,17 +46,17 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Memanggil data user dari Room Database
+
             loginViewModel.getDataUser(strUsername, strPassword).observe(this) { modelDatabases ->
                 try {
                     if (modelDatabases != null && modelDatabases.isNotEmpty()) {
                         val user = modelDatabases[0]
 
-                        // Simpan data ke SharedPreferences
+
                         val sharedPref = getSharedPreferences("USER_DATA", Context.MODE_PRIVATE)
                         val editor = sharedPref.edit()
 
-                        // Simpan UID sebagai String (Penting agar sinkron dengan Firebase)
+
                         editor.putString("UID", user.uid)
                         editor.putString("USERNAME", user.username)
                         editor.putString("EMAIL", user.email ?: "email@cateringboys.com")
@@ -68,11 +68,11 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else {
-                        // Jika data tidak ditemukan (misal karena belum daftar ulang)
+
                         Toast.makeText(this, "Akun tidak ditemukan. Silakan Register ulang!", Toast.LENGTH_LONG).show()
                     }
                 } catch (e: Exception) {
-                    // Mencegah aplikasi mental jika terjadi error tak terduga
+
                     Log.e("LoginActivity", "Error Login: ${e.message}")
                     Toast.makeText(this, "Terjadi kesalahan sistem.", Toast.LENGTH_SHORT).show()
                 }

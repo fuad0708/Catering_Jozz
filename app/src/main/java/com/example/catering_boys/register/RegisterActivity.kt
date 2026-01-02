@@ -33,13 +33,13 @@ class RegisterActivity : AppCompatActivity() {
             if (strEmail.isEmpty() || strUser.isEmpty() || strPassword.isEmpty()) {
                 Toast.makeText(this, "Ups, Form harus diisi semua!", Toast.LENGTH_SHORT).show()
             } else {
-                // 1. Jalankan proses simpan
+
                 registerViewModel.addDataRegister(strEmail, strUser, strPassword)
 
-                // 2. Beri jeda atau beri tahu user
+
                 Toast.makeText(this, "Pendaftaran sedang diproses...", Toast.LENGTH_SHORT).show()
 
-                // 3. Tambahkan sedikit delay agar RxJava selesai menulis ke Room
+
                 binding.btnRegister.postDelayed({
                     Toast.makeText(this, "Berhasil! Silahkan Login.", Toast.LENGTH_SHORT).show()
                     finish()

@@ -4,7 +4,7 @@ import android.content.Context
 
 class DatabaseClient private constructor(context: Context) {
 
-    // PERBAIKAN: Ambil instance dari AppDatabase.getInstance agar sinkron
+
     val appDatabase: AppDatabase = AppDatabase.getInstance(context)
 
     companion object {
